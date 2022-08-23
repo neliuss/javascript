@@ -1,0 +1,70 @@
+<script>
+    var x=6, num, i=0;
+         num=parseInt(prompt("Escribe un entero entre 1 y 10"));      
+         if(num==x) {
+             i=i+1;
+         alert("Lo has acertado al intento " + i);       }
+      i++;
+     if (num != x){num=parseInt(prompt("Escribe un entero entre 1 y 10"));        
+          if(num==x) {
+              i=i+1;
+          alert("Lo has acertado al intento " + i);           }
+       i++;     }
+    if (num != x){num=parseInt(prompt("Escribe un entero entre 1 y 10"));        
+            if(num==x) {
+                i=i+1;
+            alert("Lo has acertado al intento " + i);   }
+        i++;
+    }
+    if (num != x){num=parseInt(prompt("Escribe un entero entre 1 y 10"));          
+            if(num==x) {
+                i=i+1;
+            alert("Lo has acertado al intento " + i);           }
+        i++;        }
+    if (num != x){num=parseInt(prompt("Escribe un entero entre 1 y 10"));         
+            if(num==x) {
+                i=i+1;
+            alert("Lo has acertado al intento " + i);           }
+        i++;        }
+                alert("Has superado el tope de intentos")
+ </script>
+ 
+ 
+ <!-- Otra forma: -->
+ <script>
+   var x=6, num, i=0;
+    while(i<5) {
+        num=parseInt(prompt("Escribe un entero entre 1 y 10"));
+         
+        if(num==x) {
+            i=i+1;
+        alert("Lo has acertado al intento " + i);
+    }
+     i++;
+     if ( i>5 ) {
+            alert("Has superado el tope de intentos")
+        } 
+     }
+
+</script>
+
+
+
+<!-- while intentosRealizados < 6:
+    print('Intenta adivinar.') # Hay cuatro espacios delante de print.
+   estimación = input()
+   estimación = int(estimación)
+  intentosRealizados = intentosRealizados + 1
+if estimación < número:
+ print('Tu estimación es muy baja.') # Hay ocho espacios delante de print.
+  if estimación > número:
+     print('Tu estimación es muy alta.')
+ if estimación == número:
+    break
+if estimación == número:
+  intentosRealizados = str(intentosRealizados)
+ print('¡Buen trabajo, ' + miNombre + '! ¡Has adivinado mi número en ' + intentosRealizados + ' intentos!')
+if estimación != número:
+  número = str(número)
+   print('Pues no. El número que estaba pensando era ' + número) -->
+   

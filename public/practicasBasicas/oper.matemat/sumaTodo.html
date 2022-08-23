@@ -1,0 +1,13 @@
+<script> 
+    let sum = 0; //let  permite declarar variables limitando su alcance (scope) al bloque, declaración, 
+    //o expresión donde se está usando. Lo anterior diferencia let de la palabra reservada var , 
+    //la cual define una variable global o local en una función sin importar el ámbito del bloque
+   
+    console.log("Ejercicio 2:"); //Muestra un mensaje en la consola web 
+    while (true) { 
+        let value = +prompt("introduce un número", ''); //prompt muestra en pantalla mensajes de alerta 
+        //encuadrados en una pequeña ventana modal en la cual se puede rellenar información.
+        if (!value) break; 
+        sum += value; } 
+    document.write( 'Sum: ' + sum); 
+</script>
