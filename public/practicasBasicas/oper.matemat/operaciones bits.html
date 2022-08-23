@@ -1,0 +1,26 @@
+
+<h1>Operaciones con bits</h1>
+
+<h4>125/8</h4>
+<script>
+    var res= 125 >> 3; //operador >> para dividir. Se utilizan potencias de 2. 8 es 2^3 con lo cual se desplaza 3 bits a la derecha el 125 (cuando está expresado en binario). 125 es 1111101, si lo desplazo 3 bits a la derecha (división entre 8) queda 1111 que es 15 en decimal
+    document.write("El resultado es " + res);
+</script>
+
+<h4>40x4</h4>
+<script>    
+    var res2= 40 << 2; //operador << para multiplicar. Si desplazas 3 bits a la izquierda el 125 (cuando está expresado en binario). 125 es 1111101, si lo desplazas 3 bits a la izquierda (multiplicación por 8) queda 1111101000 que es 1000 en decimal.
+    document.write("El resultado es " + res2);
+</script>
+
+<h4>25/2</h4>
+<script> 
+    var res3= 25 >> 1; 
+    document.write("El resultado es " + res3);
+</script>
+
+<h4>10x16</h4>
+<script>  
+    var res4= 10 << 4; 
+    document.write("El resultado es " + res4);
+</script>

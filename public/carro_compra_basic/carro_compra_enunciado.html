@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+
+<body>
+    <div id="lista">
+        <h2>Lista de productos</h2>
+    </div>
+    <div id="carrito">
+        <h2>Lista de la compra</h2>
+    </div>
+    <div id="totalCompra"><em>Total a pagar</em></div>
+    <script>        //cómo recorrer un array literal multidimensional
+
+        //incrusto 03_clases:
+        class Producto {
+
+     /*                           static _conteo = 0;
+                             static get conteo() {
+                                 return Producto._conteo + ' instancias';
+                             }  */
+
+           
+            constructor(id = 0, nombre = 'sin nombre', precio = 0, imagen = 'sin imagen', stock = 0) {
+                this.id = id;
+                this.nombre = nombre;
+                this.precio = precio;
+                this.imagen = imagen;
+                this.stock = stock;
+                // podríamos incrementar el número de instancias cada vez que se crea un objeto
+                Producto._conteo++;
+            }
+//Pq cn el set y get no me funciona? Debo cambiar nombres???
+            imprimeId() {
+                return this.id;
+            }
+            imprimeNombre() {
+                return this.nombre;
+            }
+            imprimePrecio() {
+                return this.precio;
+            }
+            imprimeImagen() {
+                return this.imagen;
+            }
+            imprimeStock() {
+                return this.stock;
+            }
+
+            modificaPrecio(precio) {
+                this.precio = precio;
+            }
+            modificaStock(stock) {
+                this.stock = stock;
+            }
+            modificaNombre(nom) {
+                this.nombre = nomb;
+            }
+
+            mostrarProductos(array) {
+                document.write("<font color='white'>");
+                document.write("<table border=1 bgcolor=steelblue>" +
+                    "<tr><th colspan=5>" + "Lista de productos." + "</th></tr>");
+                //Escribimos en una celda el nombre de la posición i
+                for (i = 0; i < array.length; i++) {
+                    //Escribimos en una celda el nombre de la posición i
+                    document.write("<tr><td>" + array[i].imprimeId() + "</td>");
+                    document.write("<td>" + array[i].imprimeNombre() + "</td>");
+                    document.write("<td>" + array[i].imprimePrecio() + "</td>");
+                    document.write("<td>" + array[i].imprimeImagen() + "</td>");
+                    document.write("<td>" + array[i].imprimeStock() + "</td></tr>");
+                }
+                document.write("</table></font><br />");
+            }
+
+            anadirACarrito(articulo, cantidad) {
+                // Añadimos un producto a nuestro carrito
+                this.nombre = articulo;
+                this.stock = cantidad;
+                this.id = 0;
+                // Calculo el total: tendré que buscar el elemento en el array para saber el precio del articulo, pequeña trampa, para listas largas, desestimado
+                if (articulo == "Patata") {
+                    this.precio = 0.95;
+                } else if (articulo == 'Calabacin') {
+                    this.precio = 1.25;
+                } else if (articulo == 'Grelos') {
+                    this.precio = 2.6;
+                } else if (articulo == 'Huevos') {
+                    this.precio = 1.5;
+                } else if (articulo == 'Habas') {
+                    this.precio = 0.8;
+                }
+            }
+
+            //calcularTotal():El importe del articulo en función del precio
+            calcularTotal() {
+                document.writeln("El total de su compra asciende a " + this.imprimePrecio() * this.imprimeStock() + " €." + "<br/>");
+            }
+
+            // metodo del objeto para actualizar el stock
+            actualizarStock(array) {
+                for (i = 0; i < array.length; i++) {
+                    if (array[i].imprimeNombre() == this.imprimeNombre()) {
+                        //               document.writeln("el nombre del producto es " + this.imprimeNombre() + ", precio: " + this.imprimePrecio() + ", stock: " + a[i].imprimeStock() + "." + "<br/>");
+                        array[i].modificaStock(array[i].imprimeStock() - this.imprimeStock());
+                        document.writeln("El producto " + this.imprimeNombre() + ",actualiza a un nuevo stock de: " + array[i].imprimeStock() + "." + "<br/>");
+                    }
+                }
+            }
+
+            mostrarCarrito() {
+                document.writeln("Su compra es " + this.imprimeStock() + " kg de " + this.imprimeNombre() + ", por un valor total de " + this.imprimePrecio() + "." + "<br/>");
+            }
+        }
+        const producto1 = new Producto(1, 'Patata', 0.95, './imagenes/patata.jpg', 5000);
+        const producto2 = new Producto(2, 'Cebolla', 1.5, './imagenes/cebolla.jpg', 750);
+        const producto3 = new Producto(3, 'Calabacin', 1.25, './imagenes/calabacin.jpg', 450);
+        const producto4 = new Producto(4, 'Grelos', 2.6, './imagenes/grelos.jpg', 1000);
+        const producto5 = new Producto(5, 'Huevos', 1.5, './imagenes/huevos.jpg', 1500);
+        const producto6 = new Producto(6, 'Habas', 0.8, './imagenes/habas.jpg', 25);
+        const almacen = [];
+        almacen.push(producto1); almacen.push(producto2); almacen.push(producto3); almacen.push(producto4); almacen.push(producto5); almacen.push(producto6);
+//Pq funciona si pongo pr1 o 2 ó 3, si no pintan nada en el resultado reflejado
+        producto1.mostrarProductos(almacen);
+
+        document.writeln("<br/>");
+        document.write("Creamos la primera cesta de la compra:" + "<br/>");
+
+        let carrito = []; // array para almacenar los productos que vamos comprando
+        let total = 0;    // Total lista de la compra: suma de todos los artículos
+
+        const carro1 = new Producto(); const carro2 = new Producto();    //  const carro3 = new Producto();
+        carro1.anadirACarrito("Patata", 10); carro2.anadirACarrito("Grelos", 150);    //    carro1.anadirACarrito("Habas", 15);
+
+        document.writeln("Ha elegido " + carro1.imprimeStock() + " kg de " + carro1.imprimeNombre() + "." + "<br/>"); carro1.calcularTotal();
+        document.writeln("Ha elegido " + carro2.imprimeStock() + " kg de " + carro2.imprimeNombre() + "." + "<br/>"); carro2.calcularTotal();
+        //      document.writeln("Ha elegido " + carro3.imprimeStock() + " kg de " + carro3.imprimeNombre() + "." + "<br/>"); carro3.calcularTotal(); 
+        document.writeln("<br/>");
+
+        carro1.actualizarStock(almacen);
+        carro2.actualizarStock(almacen);
+
+        document.writeln("<br/>"); document.writeln("Comprobamos:<br/>");
+        for (var i = 0; i < almacen.length; i++) {
+            document.writeln("Para el índice [" + i + "], el nombre del producto es " + almacen[i].imprimeNombre() +
+                ", con id " + almacen[i].imprimeId() + ", precio: " + almacen[i].imprimePrecio() + ", stock: " + almacen[i].imprimeStock() + "." + "<br/>");
+        }
+
+        document.writeln("<br/>"); document.writeln("Mostramos las compras:<br/> ");
+        carro1.mostrarCarrito();
+        carro2.mostrarCarrito();
+
+        document.write('Conteo stático', Producto._conteo);
+    </script>
+
+    <script>
+        document.writeln("<h1>Ej 2. Extends (herencias)</h1>");
+        //Creamos clase
+        class Pelicula {
+
+            constructor (nombre, actores, director, año, tematica) {
+                this.nombre=nombre;
+                this.actores=actores;
+                this.director=director;
+                this.año = año;
+                this.tematica=tematica;
+            }
+
+            imnombre() {
+                return this.nombre;
+            }
+            imactores() {
+                return this.actores;
+            }
+           imdirector() {
+                return this.director;
+            } 
+            imaño() {
+                return this.año;
+            }
+            imtematica() {
+                return this.tematica;
+            }
+
+            monombre(nom){
+                this.nombre=nom;
+            }
+            moactores(act) {
+                this.actores=act;
+            }
+            moirector(dir) {
+                this.director=dir;
+            }
+            moaño(ano) {
+                this.año=ano;
+            }
+            motematica(tem) {
+                this.tematica=tem;
+            }
+
+           /*  lista(array){
+                array.forEach(function(elemento) {      //Cómo hago pa hacer el foreach sin poner el array 
+                    console.log(elemento);
+                });
+            } */
+            listaNombres(){
+                for (let peli of cartelera) {
+                    console.log(peli.nombre, peli.año, peli.tematica);
+                }
+            }
+        }
+
+        var peli1=new Pelicula("Pulp Fiction", "Trav., Sam., Uma", "Tarantino", 1994, "thriller");
+        var peli2 = new Pelicula("Doce hombres sin piedad","Henry Fonda", "Lumet", 1957, "intriga");
+
+        var cartelera=[];
+        cartelera.push(peli1); cartelera.push(peli2); //cartelera.push(peli3);
+//        peli1.lista(cartelera);
+        peli1.listaNombres();
+        class Reparto extends Pelicula {
+            constructor (nombre, actores, director, año, temática, cantidadActores, profesionales) {
+                super (nombre, actores, director, año, temática);
+                this.cantidadActores=cantidadActores;
+                this.profesionales=profesionales;
+            }
+            muestraReparto (){
+                console.log("La cantidad de actores de la película "+this.nombre+", fue de "+this.cantidadActores+", participando "+this.profesionales+" profesionales.")
+            }
+
+            listaNombres(){
+                super.listaNombres()+ console.log("La cantidad de actores de la película "+this.nombre+", fue de "+this.cantidadActores+", participando "+this.profesionales+" profesionales.") ;
+            }
+
+
+            lista(){
+ //               super.lista(array)+console.log("La cantidad de actores de la película " + this.nombre + ", fue de " + this.cantidadActores + ", participando " + this.profesionales + " profesionales.");
+            }
+        }
+        
+        var peli4=new Reparto("39 escalones", "Donat", "Hitchcock", 1935, "intriga", 9,20);
+        cartelera.push(peli4);
+       peli4.muestraReparto();
+       peli4.listaNombres();
+ //      peli4.lista(cartelera);
+
+
+
+        //conteo ni idea pq la inicialización me da error
+       //Funciones id en la cabecera y funcion conteo, no las pillo
+       //Pq funciona lo de meter    prod1.mostrarProductos(almacen); no pinta nada prod1, hacer fuera el bucle
+    </script>
+</body>
+
+</html>
+
+map para cambiar algo puntual del array, debe haber un return
+reduce devuelve un valor, no un array
+nmt@fernandowirtz.com   mail teresita.
+
+const en arrray es un valor que no se puede reasignar, es un objeto, pero el objeto dentro, puede ser  modificado. 
+addEventListener: manejador de métodos
+(primer parámetro es el evento(siempre entre comillas) sin el on, el segundo , la función a ejecutar sin parentesis)
+
+en formularios, una etiqueta o label por campo
+
+radio button, solo `permite marcar uno a la vez, son excluyentes
+<form name="formulario" action="#"></form>
+
+en radio button, todos los nombres son iguales(en el ejemplo), y se agrupan automáticamente en array con sus nombres, ejemplo actores (carrey-tosar-willis)
