@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>DWEC05 - Trabajando con objetos input de tipo radio</title>
+</head>
+
+<body>
+    <h1>Trabajando con objetos input de tipo radio</h1>
+    <form name="formulario" action="#">
+        <fieldset>
+            <legend>Selecciona tu actor favorito:</legend>
+            <label for="actor1">Willis</label>
+            <!-- Fijarse que la clave aquí está en que todos los botones de radio tienen el mismo nombre, pero distinto id para poder 
+                    saber cuál se ha marcado. Recordar que cuando se envía un formulario al servidor, lo que se envía es el nombre del campo
+                    y su valor, al ser el mismo nombre es lo que hace que sean excluyentes y solo se pueda marcar uno  -->
+            <input type="radio" name="actores" id="actor1" value="Walter Bruce Willis - 19 de Marzo de 1955" checked>
+            <label for="actor2">Carrey</label>
+            <input type="radio" name="actores" id="actor2" value="James Eugene Jim Carrey - 17 de Enero de 1962">
+            <label for="actor3">Tosar</label>
+            <input type="radio" name="actores" id="actor3" value="Luis Tosar - 13 de Octubre de 1971">
+            <!--<input type="button" id="consultar" name="consultar" value="Consultar Más Datos" onclick="mostrarDatos()">-->
+            <input type="button" id="consultar" name="consultar" value="Consultar Más Datos">
+        </fieldset>
+    </form>
+    <script type="text/javascript"> //radio
+      //que cuando clico en consultar, me salga la información del q está marcado
+
+    </script>
+
+------------------------------------------------------------------------
+<form action="" method="get">
+    <label for="verano">¿Te gusta el verano?</label>
+    <input type="checkbox" id="verano" name="verano" value="Si" />
+</form>
+<button id="marcar" name="marcar">Marcar Checkbox</button>
+<button id="desmarcar" name="desmarcar">Desmarcar Checkbox</button>
+<button id="ver" name="ver">Ver checkbox marcado</button>
+
+<script type="text/javascript">//checbox v2
+    //ver si está o no marcado, y que lo muestre, con marcar, checa el checkbox, con desmarcar lo quita, y ver, muestra si está o no marcado
+
+
+</script>
+
+-------------------------------------------------------------------------
+<form id="formulario" action="pagina.php">
+    <p>
+        <label for="nombre">Nombre y Apellidos: </label>
+        <input type="text" id="nombre" name="nombre" value="" size="30">
+    </p>
+
+    <p>
+        Introduce tu Nombre y Apellidos y haz click en el del campo.
+    </p>
+</form>
+<script type="text/javascript">  //input-text v2
+    //click dentro del campo, convierte lo escrito, en mayúsculas
+
+</script>
+
+<form id="formulario2" action="pagina.php">
+        <p>
+            <label for="nombre2">Nombre y Apellidos: </label>
+            <input type="text" id="nombre2" name="nombre2" value="" size="30">
+            </p>
+            <p>
+                Introduce tu Nombre y Apellidos y haz click fuera del campo.
+            </p>
+</form>
+<script type="text/javascript">
+    //click fuera del campo, convierte lo escrito, en mayúsculas
+
+</script>
+------------------------------------------------------------------------------------
+    <body>
+        <input type="checkbox" id="marcar" /> Seleccionar/Deseleccionar todos<br><br>
+        <input type="checkbox" name="ejemplo" value="1"> 1<br />
+        <input type="checkbox" name="ejemplo" value="2"> 2<br />
+        <input type="checkbox" name="ejemplo" value="3"> 3<br />
+        <input type="checkbox" name="ejemplo" value="4"> 4<br />
+        <script>//marca o desmarca todos con el mismo botón- para probarlo, eliminar todo lo de arriba, sino me solapa el nombre con otros
+document.getElementById("marcar").addEventListener("click",mar);
+function mar(){
+    let ej= document.getElementsByName("ejemplo");
+    for (i=0;i<ej.length;i++){
+        ej[i].checked=document.getElementById("marcar").checked;
+    }
+}
+        </script>
+    </body>
+
+------------------------------------------------------------------------------------
+<p>Un objeto select está compuesto realmente de un array de objetos option. El objeto select se suele mostrar
+    como una lista desplegable en la que seleccionas una de las opciones, aunque también tienes la opción de
+    selecciones múltiples, según definas el objeto en tu documento.
+</p>
+<p>Intervienen dos etiquetas SELECT y OPTION</p>
+<p> <em>Propiedades principales:</em></p>
+<ul>
+    <li><em>options:</em>contiene la lista de opciones del campo select, las etiquetas OPTION</li>
+    <li><em>selectedIndex:</em>Índice de la opción seleccionada dentro de la lista de opciones</li>
+</ul>
+<p>Al igual que el resto de campos la propiedad <em>value</em> nos permite obtener el valor del atributo value de cada
+    una de las opciones</p>
+<p>La propiedad <em>text</em> nos permite obtener el texto dentro de la propia etiqueta OPTION</p>
+<p><em>Acceso </em></p>
+<form id="formulario">
+    <p>
+        <label for="provincias">Seleccione provincia: </label>
+        <select name="provincias" id="provincias">
+            <option value="AL">Almería</option>
+            <option value="JA">Jaen</option>
+            <option value="GR">Granada</option>
+            <option value="MA">Málaga</option>
+            <option value="SE">Sevilla</option>
+            <option value="CO">Córdoba</option>
+            <option value="CA">Cádiz</option>
+            <option value="HU">Huelva</option>
+        </select>
+    </p>
+    <p>
+        Selecciona una opción y muestra su contenido o también puedes consultarlas todas.
+    </p>
+    <input type="button" name="verSeleccion" id="verSeleccion" value="Consultar información de la opción" />
+    <input type="button" name="mostrarTodas" id="mostrarTodas" value="Mostrar todas las opciones" />
+    <p id="info"></p>
+</form>
+<script type="text/javascript">
+//clicando ver selección, muestra el valor y tu seleccionada con alert. clicando en mostrarTodas, te sale toda la lista de posibilidades tipo: Opción; 0 Valor: AL Texto: Almería
+
+/* 
+    function mostrarPosicion(ev) {
+        document.getElementById("info").innerHTML = "Posicion X " + ev.clientX + " Posicion Y " + ev.clientY;
+    }
+ */
+
+   
+</script>
+
+
+<!-- mirar expresiones regulares 
+/ab*c/  :  abbbbc
+^: el emparejamiento se debe realizar desde el principio de la cadena.
+[A-Z]: cualquier carácter entre la A mayúscula y la Z mayúscula.
+{1,2}: uno o dos caracteres.
+{4}: cuatro dígitos.
+\s: un espacio en blanco.
+([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]): cualquier carácter entre la B mayúscula y la Z mayúscula, excepto las vocales.
+{3}: tres caracteres.
+$: el emparejamiento se debe realizar hasta el final de la cadena.
+
+\w  representa cualquier carácter alfanumérico(tb guión bajo), Equivalente a [A-Za-z0-9_]
+\W para no caracteres alfanuméricos, equivalente a [^A-Za-z0-9_]
+\d para dígitos, equivalente a [0-9]
+\D para no dígitos, equivalente a [^0-9]
+\s para espacios en blanco (espacios, tabuladores, etc).
+\S para no espacios en blanco.
+\b: marca el inicio y el final de una palabra.
+
+/\d{3}/       Busca 3 dígitos en la cadena
+/\d{1,5}/     Busca entre 1 y 5 dígitos en la cadena.
+/\d{2,}/      Busca 2 dígitos o más en la cadena.
+como ejemplos
+
+"1234".match(/\d{2}/);
+["12"]
+
+"1234".match(/\d{1,3}/);
+["123"]
+
+"1234".match(/\d{3,10}/)
+["1234"]
+También suele haber rangos habituales como 0 o más veces, 1 o más veces, 0 ó 1 vez. Estos rangos habituales tienen caracteres especiales que nos permiten ponerlos de forma más simple.
+
+* equivale a 0 o más veces {0,}
++ equivale a 1 o más veces {1,}
+? equivale a 0 ó 1 vez {0,1}
+
+(?=expresion) sirve para posicionar el resto de la expresión regular y buscar antes o depués. Si queremos buscar un número que vaya delante 
+de km, podemos hacer esto /\d+(?= km)/ , uno o más dígitos seguidos de un espacio y las letras km. La diferencia con la expresión (/\d+ km/) 
+es que en el primer caso sólo casan con la expresión los números, mientras que en el segundo caso se incluye también el " km"
+
+ "11 millas 10 km".match(/\d+(?= km)/);   // Devuelve ["10"]
+ "11 millas 10 km".match(/\d+ km/);       // Devuelve ["10 km"]
+
+ var reg = /javascript/;
+ "hola javascript".match(reg); //match devuelve un array con la cadena, indicando q existe
+ ó
+  "hola javascript".match(/javascript/);
+-->
+
+------------------------------------------------------------------------------------
+
+<!-- pasadas: -->
+
+<!--                PARA MOSTRAR POSICION:   function mostrarPosicion(evento) {
+document.getElementById("info").innerHTML = "Posicion X " + evento.clientX + " Posicion Y " + evento.clientY;
+} -->
+<!-- document.getElementById("form1").submit(); -->
+<!-- document.getElementById("nombre").value=document.getElementById("nombre").value.toUpperCase();     RECORDAR-->
+
+<!--para marcar y desmarcar todos los checkbox function marcadesmarca(){
+let ej=document.getElementsByName("ejemplo");
+for(let i=0; i<ej.length;i++) { ej[i].checked=document.getElementById("marcar").checked; } } -->
+
+<!-- provincias.options[provincias.selectedIndex].value       RECORDAR-->
+
+<!-- en el select, meter los const dentro de la funcion        
+ function mostrar() {
+    const arr=Array.from(document.getElementById("provincias").options);
+    let op=[]; //nunca const
+     arr.forEach((element, index) => {
+        op += `Opción; ${index} Valor: ${element.value} Texto: ${element.text}<br>`;
+    });
+    document.getElementById("info").innerHTML =op;
+}                           RECORDAR-->
+
+<!-- function compruebaTelef() {
+let expTel = /^[0-9]+$/; //para crear una expresión regular, debemos crear un patrón encerrado entre barras /xxx/; ^
+marca el comienzo de la entrada, y $ marca el final de la entrada.En el nuestro, estamos obligando a que el campo sea
+únicamente cifras.[0 - 9] indica que solo acepta caractéres del 0 al 9. + indica que los caractéres del 0 al 9 pueden
+repetirse en cualquier orden.
+if (!expTel.test(document.getElementById("edad").value )) {
+alert("escribe bien");
+this.event.preventDefault();
+return false;
+} else {
+if ( expTel.test(document.getElementById("edad").value && document.getElementById("edad").value.length == 9 &&
+confirm("quieres enviar?"))){
+return true;
+}
+}
+} -->
+
+<script>
+//Con for of
+for (let x of arr) {
+console.log(x);
+}
+//Con for of.  solo nombres y apellidos:
+for (let x of arr) {   
+    console.log(x.nombre, x.apellido1, x.apellido2);
+}
+//Con for in
+for (let x in arr) {
+console.log(arr[x]);
+} 
+// Con for each.  solo nombres y apellidos:
+function listaPers2(){
+    arr.forEach(function(fila) { 
+        console.log(fila.nombre, fila.apellido1, fila.apellido2);
+        }); 
+}
+ //Mayores de 25
+        var edad = arr.filter(function (arr) {
+                return arr.edad > 25;
+            });
+            console.table(edad);
+// encadenar filter y map, es decir, primero aplicar filter para obtener los mayores de 25 y una vez obtenidos recuperar solo nombre y edad...
+const may = arr.filter(x => x.edad >= 25).map(x => x.nombre);
+console.log("Ejemplo aplicando map para obtener solo nombre", may);
+
+// Obtener la cantidad total de unidades en stock, la suma del stock de todos los productos.
+const sumastock = arr.filter(st => st.stock);        //Primero filtramos para que solo salga el stock
+var tot = sumastock.map(function (a) { //creamos nuevo array con solo los stocks
+    var nuev = {};
+    nuev = a.stock;
+    return nuev;
+    }
+); console.log(tot); //comprobamos el array con todos los stocks
+//Ahora 3 métodos diferentes para sumarlos
+var suma = 0;
+tot.forEach(function (num) {
+suma += num;
+});
+console.log("Con for each: "+suma);
+// con for of :
+let suma2 = 0;
+for (let i of tot) {
+suma2 += i;
+}
+console.log("Con for of: "+suma2);
+// Con for clasico:
+let suma3 = 0;
+for (let i = 0; i < tot.length; i++) { suma3 +=tot[i]; } console.log("Con for mítico: " + suma3);   
+</script>

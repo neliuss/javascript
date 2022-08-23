@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+
+<body>
+    <script>        
+        const listaPersonas = [
+                { nombre: "Ana", apellido1: "Álvarez", apellido2: "Cabado", edad: 22 },
+                { nombre: "Abel", apellido1: "Liste", apellido2: "Souto", edad: 23 },
+                { nombre: "Barca", apellido1: "Pereira", apellido2: "Aguiar", edad: 29 },
+                { nombre: "Benito", apellido1: "Riaño", apellido2: "Amenedo", edad: 21 },
+            ];
+
+
+//  Con for of lista completa.    Sintaxis:  for (variable of iterable) {     statement }
+    console.log("Con for of:");
+        for (let x of listaPersonas)  {
+                console.log(x);
+        }
+//Con for in
+    console.log("Con for in:");
+    for (let x in listaPersonas) {
+ //       console.log(` ${x}: ${listaPersonas[x]}`);       
+        console.log(listaPersonas[x]);
+    }
+
+    console.log("Con for each:");
+ //  Con for each lista completa.   Sintaxis:   for (variable of iterable) {     statement }  
+        listaPersonas.forEach(lista => {
+            console.log(lista);
+//            console.log(typeof lista);    //decimos q tipo de objeto es
+        })
+        //Otra forma con for each:
+        console.log("Otra forma con for each:")
+        listaPersonas.forEach(function (lista) {
+                console.log(lista);
+        })              
+// Con for each.  solo nombres y apellidos:
+function listaPers2(){
+    listaPersonas.forEach(function(fila) { 
+        console.log(fila.nombre, fila.apellido1, fila.apellido2);
+        }); 
+}
+function listaPers() {
+    return (listaPersonas.nombre, listaPersonas.apellido1, listaPersonas.apellido2);
+}
+// Con for of.  solo nombres y apellidos:
+    console.log("Con for of.solo nombres y apellidos:")
+    for (let persona of listaPersonas) {   
+        console.log(persona.nombre, persona.apellido1, persona.apellido2);
+    }
+    console.log("Parte a) del ej:")
+//Con map: parte a) del ej .  
+    var soloNombres = listaPersonas.map ( function ( listanueva) {
+        var nuev = {};      //No entiendo pq debo crear nuev
+        nuev =  listanueva.nombre +" "+ listanueva.apellido1+" "+ listanueva.apellido2;
+        return nuev; 
+    });
+    console.log(soloNombres);
+//Dependiendo como quieras presentarlo, podríamos hacer:
+    var soloNombres2 = listaPersonas.map(function (listanueva) {
+        var nuev = {};      //No entiendo pq debo crear nuev
+        nuev[listanueva.nombre] =  listanueva.apellido1 + " " + listanueva.apellido2;
+        return nuev;
+    });
+    console.log(soloNombres2);
+ //   b) Queremos obtener un listado de las personas mayores de 25 años.
+    console.log("Listado mayores de 25");
+    for (i = 0; i< listaPersonas.length; i++) {
+            if (listaPersonas[i].edad > 25) {
+                  var este = [];
+ //           este = listaPersonas.nombre + listaPersonas.apellido1 + " " + listaPersonas.apellido2 + " " + listaPersonas.edad;
+           este.push(listaPersonas[i]);
+        }
+        };console.table(este);   
+        //Otra forma más sencilla el b)
+        console.log("otra forma más sencilla el b");
+        var may = listaPersonas.filter(function (listaPersonas) {
+                return listaPersonas.edad > 25;
+            });
+            console.table(may);
+
+ //   Os pongo varios trozos de código a modo de ejemplo:(Teresita)
+
+    /* listado mayores de 25, con método filter. En este caso el método filter se utiliza para aplicar una condición 
+    a todos los elementos de nuestra lista de personas, y lo que hace el método es devolver aquellos elementos del 
+    array que cumplen la condición. Se debe tener en cuenta que en el método filter, debemos devolver el resultado 
+    de una operación booleana.  */ 
+   console.log("acabo el b");
+    const mayores25 = listaPersonas.filter(persona => persona.edad >= 25); //devuelveARRAY de personas mayores de 25.
+    console.log("Opción resultado directo filtro: ", mayores25);
+console.log("Utilizar método console.table e indicar los nombres de las columnas, campos de persona a mostrar");
+    /* mostramos los datos a modo de tabla, para evitar tener que hacer un bucle, y como segundo parámetro al 
+    método table, le podemos indicar las columnas del array que queremos, en este caso las columnas son las prop
+     del objeto persona  y mostramos por ejemplo el nombre y la edad   */
+    console.table(mayores25, ["nombre", "edad"]);
+// Hacer un map al array para devolver solo el nombre y edad de los mayores de 25 que tengo en el array mayores25
+    const mostrarMayores25 = mayores25.map(persona => `Nombre: ${persona.nombre}, Edad: ${persona.edad}`);
+    console.log(mostrarMayores25);
+//Encadenar filter y map, primero filter para obtener los mayores de 25 y ya obtenidos recuperar solo nombre y edad..
+    const nombreMayores25 = listaPersonas.filter(persona => persona.edad >= 25).map(persona => persona.nombre);
+    console.log("Ejemplo aplicando map para obtener solo nombre", nombreMayores25);
+
+
+        console.table("~~~~~~~Ej 2~~~~~~~~");
+    const listaProductos = [
+        { nombre: "arroz", precio: 1, stock: 100 },
+        { nombre: "lentejas", precio: 1.5, stock: 10 },
+        { nombre: "garbanzos", precio: 2, stock: 50 },
+        { nombre: "habas", precio: 2.5, stock: 75 }
+    ];
+//    - Obtener un listado de proctos y su stock(usando map)
+        var listaNomStock = listaProductos.map(function (listanueva) {
+                var nuev = {};      //No entiendo pq debo crear nuev
+                nuev = listanueva.nombre + " : " + listanueva.stock ;
+                return nuev;        
+        });  console.log(listaNomStock);
+//Listado de nuevos precios, incrementando en un 2% el precio de aquellos productos para los que hay más de 50 unidades en stock(filter y map).
+        const listaprecio = listaProductos.filter(st => st.stock > 50);     //Primero filtramos
+        console.log(listaprecio);  //Vemos los que filtra
+        var li = listaprecio.map(function (listanueva) {       //creamos nuevo array con los nombres y los precios cambiados 
+                    var nuev = {};
+                    nuev = listanueva.nombre + " : " + ((listanueva.precio * 0.02) + listanueva.precio);
+                    return nuev;
+            }
+            )    ; console.log(li);
+//    Obtener el producto del que tenemos más stock.
+//math.max encuentra el valor más alto de la lista, creamos con map, y buscamos mediante el parámetro stock
+    var numMayor= Math.max.apply(Math, listaProductos.map(function(busca) { return busca.stock; }));
+    console.log(numMayor);      //Nos da el número más alto
+
+    for (i = 0; i < listaProductos.length; i++) {
+        if (listaProductos[i].stock == numMayor) {
+            var a = [];
+            a.push(listaProductos[i]);           
+        }
+    }
+    console.log(a);
+// Obtener la cantidad total de unidades en stock, la suma del stock de todos los productos.
+   const sumastock = listaProductos.filter(st => st.stock);     //Primero filtramos para que solo salga el stock
+    var listaStockTotal = sumastock.map(function (listanueva) {       //creamos nuevo array con solo los stocks
+        var nuev = {};
+        nuev =  listanueva.stock;
+        return nuev;
+    }
+    ); console.log(listaStockTotal); //comprobamos el array con todos los stocks       
+    //Ahora 3 métodos diferentes para sumarlos       
+        var suma = 0;
+        listaStockTotal.forEach(function (numero) {
+            suma += numero;
+        });
+        console.log("Con for each: "+suma);
+    //  con for of :
+        let suma2 = 0;
+        for (let i of listaStockTotal) {
+            suma2 += i;
+        }
+        console.log("Con for of: "+suma2);
+ //  Con for clasico:
+        let suma3 = 0;
+        for (let i = 0; i < listaStockTotal.length; i++) {
+            suma3 += listaStockTotal[i];
+        }
+        console.log("Con for mítico: " + suma3);
+    </script>
+</body>
+
+</html>

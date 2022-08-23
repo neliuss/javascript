@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<htm xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>DWEC05 - Solución Tarea</title>
+        <script type="text/javascript" src="DWEC05_alex.js"></script>
+        <style type="text/css">
+            label {
+                width: 170px;
+                float: left;
+                margin-bottom: 5px;
+            }
+
+            input,
+            select {
+                width: 200px;
+                float: left;
+                margin-bottom: 5px;
+            }
+
+            fieldset {
+                background: #c1e7e7;
+                width: 400px;
+                border: thick solid #306;
+            }
+
+            legend {
+                border-top-width: medium;
+                border-right-width: medium;
+                border-bottom-width: medium;
+                border-left-width: medium;
+                border-top-style: solid;
+                border-right-style: solid;
+                border-bottom-style: solid;
+                border-left-style: solid;
+                background-color: #FFF;
+            }
+
+            #mensajes {
+                float: left;
+                background: #33FF33;
+                width: 450px;
+            }
+
+            #errores {
+                float: left;
+                background: #9e9a99;
+                width: 400px;
+                font-size: smaller;
+            }
+
+            #errores li {
+                list-style-type: decimal;
+                list-style-position: inside;
+            }
+
+            #intentos {
+                float: left;
+                background: #CCFF33;
+                width: 400px;
+            }
+
+            .error {
+                border: solid 2px #FF0000;
+            }
+        </style>
+    </head>
+
+    <body>
+        <fieldset>
+            <legend>DWEC05 - Solución Tarea</legend>
+            <form name="formulario" id="formulario" action="#" method="get">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" />
+                <label for="email">E-mail:</label>
+                <input name="email" type="text" id="email" />
+                <label for="provincia">Provincia:</label>
+                <select name="provincia" id="provincia">
+                    <option value="0" selected="selected">Seleccione Provincia</option>
+                    <option value="C">A Coruña</option>
+                    <option value="LU">Lugo</option>
+                    <option value="OU">Ourense</option>
+                    <option value="PO">Pontevedra</option>
+                </select>
+                <label for="fecha">Fecha Nacimiento:</label>
+                <input name="fecha" type="text" id="fecha" />
+                <label for="telefono">Teléfono:</label>
+                <input name="telefono" type="text" id="telefono" maxlength="9" />
+                <input type="checkbox" name="condiciones" id="condiciones" value="aceptadas" />
+                <label for="condiciones"> He leído y acepto las condiciones</label>
+                <input type="button" name="limpiar" id="limpiar" value="Limpiar" />
+                <input type="button" name="enviar" id="enviar" value="Enviar" />
+            </form>
+            <div id="errores"></div>
+            <div id="intentos"></div>
+            <div id="datos"></div>
+        </fieldset>
+    </body>
+
+    </html>

@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <title>DWEC04</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <title>Trabajo con arrays</title>
+
+        <script type="text/javascript">
+            class Edificio {
+                constructor(nom, calle, numEdif, cp, plantasEdif) {
+                    this.nom = nom;
+                    this.calle = calle;
+                    this.numEdif = numEdif;
+                    this.cp = cp;
+                    this.plantasEdif = [];
+                }
+                imprimeNombre() {
+                    return this.nom;
+                }
+                imprimeCalle() {
+                    return this.calle;
+                }
+                imprimeNumero() {
+                    return this.numEdif;
+                }
+                imprimeCodigoPostal() {
+                    return this.cp;
+                }
+                imprimePlantas() {
+                    return this.plantasEdif.length;
+                }
+                imprimePuertas() {
+                    return this.plantasEdif[0].length;
+                }
+                imprimirPropietarios() {
+                    for (var i = 0; i < this.plantasEdif.length; i++) {     // recorro plantas
+                        for (var j = 0; j < this.plantasEdif[i].length; j++) {      //recorro puertas
+                                if (this.plantasEdif[i][j] == undefined) {  //Si el valor es undefined
+                                    document.write("Sin propietario el piso " + (i+1) + ", puerta " + (j+1) + "<br/>");
+                                } else {
+                                    document.writeln("Propietario: "+ this.plantasEdif[i][j] +", del piso "+ (i+1) + ", puerta "+ (j+1)+ "<br/>");       
+                            }
+                        }
+                    }
+                }
+                imprimirPlantas(){
+                    document.writeln("El número de plantas del edificio "+this.nom+", es de "+this.plantasEdif.length+", y su número de puertas: "+ this.plantasEdif[0].length+"."+"<br/>");
+                }
+
+                modificarNumero(numero) {
+                    this.numEdif = numero;
+                }
+                modificarCalle(calle) {
+                    this.calle = calle;
+                }
+                modificarCodigoPostal(codigo) {
+                    this.cp = codigo;
+                }
+
+                agregarPlantasYPuertas(numplantas, puertas) {
+                    if (this.plantasEdif.length === 0) {
+                        for (var i = 1; i < numplantas+1; i++) {
+                            this.plantasEdif.push(new Array(puertas));
+                        }
+                    } else {
+                        let plantAnt= this.plantasEdif.length;
+    //                   let plantAnt = this.imprimePlantas();     
+                        let planTot = plantAnt + numplantas;
+                        let puertAnt= this.plantasEdif[0].length;
+    //                   let puertAnt = this.imprimePuertas();
+                        let puerTot = puertAnt + puertas;
+                         //método cutre, borro todo, y vuelvo a hacer bucle para incrustarlo, debe haber otro mucho mejor.
+                         //si los propietarios no se creasen en el siguiente apartado, no valdría
+                        this.plantasEdif.splice(0, this.plantasEdif.length);
+                        for (i = 1; i < planTot+1; i++) { 
+                            this.plantasEdif.push(new Array(puerTot));
+                        }
+                    }
+                }
+                agregarPropietario(nombre, planta, puerta) {
+                    //this.plantasEdif[planta][puerta].push(nombre);            valdría??
+                    this.plantasEdif[planta-1][puerta-1]=nombre;
+                    document.writeln(nombre + " es ahora el propietario de la puerta " + puerta + " de la planta " + planta + "<br/>");
+                }
+            }
+            var padron = new Array(); //No puedo crearlo dentro de la clase Edificio
+            document.writeln("Instanciamos 3 edificios preconfigurados: " + "<br/>");
+            var pru1 = new Edificio('Edén', 'Guantanamera', 4, 16009);
+            document.writeln("Construido nuevo edificio de nombre " + pru1.imprimeNombre() + ", en la calle: " + pru1.imprimeCalle() + ", nº: " + pru1.imprimeNumero() + ", CP: " + pru1.imprimeCodigoPostal() + "." + "<br/>");
+            var pru2 = new Edificio("Valhalla", "Tinajas", 16, 18079);
+            document.writeln("Construido nuevo edificio de nombre " + pru2.imprimeNombre() + ", en la calle: " + pru2.imprimeCalle() + ", nº: " + pru2.imprimeNumero() + ", CP: " + pru2.imprimeCodigoPostal() + "." + "<br/>");
+            var pru3 = new Edificio("Valparaíso", "Luna", 46, 11043);
+            document.writeln("Construido nuevo edificio de nombre " + pru3.imprimeNombre() + ", en la calle: " + pru3.imprimeCalle() + ", nº: " + pru3.imprimeNumero() + ", CP: " + pru3.imprimeCodigoPostal() + "." + "<br/>");
+
+            //padron.push(pru1); padron.push(pru2); padron.push(pru3);
+            padron[0] = pru1;
+            padron[1] = pru2;
+            padron[2] = pru3;
+
+            function listadoCompleto() {
+                for (var i = 0; i < padron.length; i++) {
+                    document.writeln("Para el índice [" + i + "], el nombre del edificio es " + padron[i].imprimeNombre() +
+                        ", sito en la calle " + padron[i].imprimeCalle() + ", nº: " + padron[i].imprimeNumero() + ", CP: " + padron[i].imprimeCodigoPostal() + "." + "<br/>");
+                }
+            }
+
+            document.writeln(" <br/>");
+            listadoCompleto(); document.writeln(" <br/>");
+            document.writeln("Pasamos a modificar el número del primer edificio: "+" <br/>");
+            pru1.modificarNumero(99);
+            document.writeln("Pasamos a modificar el nombre de la calle del segundo edificio "+" <br/>");
+            pru2.modificarCalle("Sol");
+            document.writeln("Pasamos a modificar el nombre del código postal del tercer edificio "+" <br/>");
+            var preg=prompt("¿Qué nuevo CP agregamos en vez de" +pru3.imprimeCodigoPostal());
+            pru3.modificarCodigoPostal(preg);
+            document.writeln("Comprobamos el nombre de la calle del segundo edificio: "+" <br/>");
+            document.writeln("La nueva calle es : "+pru2.imprimeCalle()+" <br/>");
+            document.writeln("Comprobamos el número del primer edificio: "+" <br/>");
+            document.writeln("El nuevo número es : "+pru1.imprimeNumero()+" <br/>");
+            document.writeln("Comprobamos el CP del tercer edificio: "+pru3.imprimeCodigoPostal()+" <br/>");
+            listadoCompleto();          document.writeln(" <br/>");
+
+            document.writeln("Agregamos 4 plantas al primer edificio, con 2 puertas por planta." + " <br/>");
+            pru1.agregarPlantasYPuertas(4, 2);
+            document.writeln("Agregamos 3 plantas al segundo edificio, con 2 puertas por planta." + " <br/>");
+            pru2.agregarPlantasYPuertas(3, 2);
+            pru1.imprimirPlantas(); 
+            pru2.imprimirPlantas();
+            // pru1.imprimirPropietarios();
+            // pru2.imprimirPropietarios();
+            
+            document.writeln(" <br/>");
+            document.writeln("Comprobamos que se añaden, agregando 4 plantas al primer edificio, con 3 puertas por planta; 2 plantas" +
+" con 3 puertas en el segundo edificio; y 1 planta, con una puerta en el tercero." + " <br/>");
+            pru1.agregarPlantasYPuertas(4, 3); 
+            pru2.agregarPlantasYPuertas(2, 3);
+            pru3.agregarPlantasYPuertas(1, 1); 
+            document.writeln("imprimos prueba: " + " <br/>");
+            pru1.imprimirPlantas();
+            pru2.imprimirPlantas();
+            pru3.imprimirPlantas();         document.writeln(" <br/>");
+            document.writeln("Comprobamos agregando una planta y un piso más, al primer, segundo y tercer edificio: "+ "<br/>");
+            pru1.agregarPlantasYPuertas(1, 1);      pru2.agregarPlantasYPuertas(1, 1);      pru3.agregarPlantasYPuertas(1, 1);
+            pru1.imprimirPlantas();                 pru2.imprimirPlantas();                 pru3.imprimirPlantas();
+            document.writeln(" <br/>");
+
+            document.writeln("Creamos propietarios: " + " <br/>");
+            pru1.agregarPropietario("Antonio", 3, 3);   pru1.agregarPropietario("Pepe", 1, 2);  pru1.agregarPropietario("Ana", 1, 1);
+            pru2.agregarPropietario("Bonifacio", 3, 3); pru2.agregarPropietario("Valentín", 1, 2); pru2.agregarPropietario("Isabel", 1, 1);
+            pru3.agregarPropietario("Calixto", 1, 1); pru3.agregarPropietario("Hércules", 1, 2);      document.writeln(" <br/>");
+            document.write("Pasamos lista a la comunidad de propietarios del primer edificio: "+ " <br/>")
+            pru1.imprimirPropietarios();        document.writeln(" <br/>");
+            document.write("Pasamos lista a la comunidad de propietarios del segundo edificio: " + " <br/>")
+            pru2.imprimirPropietarios();        document.writeln(" <br/>");
+            document.write("Pasamos lista a la comunidad de propietarios del tercer edificio: " + " <br/>")
+            pru3.imprimirPropietarios();        document.writeln(" <br/>");
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
+

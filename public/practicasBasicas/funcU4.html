@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+<body>
+	<h1>Ejemplos Unidad 4</h1>
+   	<script>
+        // EJemplos 
+		// reducir el array a un único valor, en este caso a la suma de todos sus elementos, el valor de partida es el cero.
+		let resultado = [2,4,6].reduce(function(a, b) {
+            console.log(a, b); 
+            return a + b;
+        }, 0);
+        console.log(`Suma de todos los elementos del array: ${resultado}`);
+		
+		// supongamos que tenemos un valor ya de partida de 10 y queremos incrementarlo con la suma de los elementos del array
+		let resultado1 = [2,4,6].reduce(function(a, b) {
+            console.log(a, b); 
+            return a + b;
+        }, 10);
+        console.log(`Suma de todos los elementos del array: ${resultado1}`);
+		
+		// El siguiente ejemplo usa filter() para crear un array nuevo al que se aplica un filtro con el 
+		// objetivo de excluir todos los elementos con valores superiores a 40.
+        function esSuficientementeGrande(elemento) {
+           return elemento >= 40;
+        }
+        var filtrados = [12, 5, 8, 130, 44].filter(esSuficientementeGrande);
+        console.log(`son mayores de 40 los valores ${filtrados}`);
+         
+        //parámetros por defecto
+		// la función concatenar solo tomar el valor por defecto para b en el caso de que no se indique en la llamada.
+        function concatenar(a, b=" "){
+            return a + b;
+        }  
+        console.log(concatenar("hola"));
+        console.log(concatenar2("hola","fulanito"));
+		// Sería equivalente a lo siguiente
+        function concatenar2(a,b){
+            return a + ( b || " ");
+        }
+        console.log(concatenar2("hola"));
+        console.log(concatenar2("hola","fulanito"));
+
+        // En el siguiente ejemplo definimos una serie de funciones y su ejecución se decidirá en función de los resultados obtenidos durante 
+		// la propia ejecución, sobre la marcha
+	    const mensajePar= function() {
+            console.log("El número obtenido es par");
+        };
+        
+        const mensajeNoPar = function () {
+            console.log("El número obtenido no es par");
+        };
+        const fCorrecto = function() {
+            console.log("Función ejecutada correctamente");
+        };
+
+        const fError = function () {
+            console.log("No se ha obtenido el resultado buscado");
+        };
+		// la función recibe como parámetros las funciones a ejecutar
+        const fObtenerNumeroPar = function (callbackPar, callbackNoPar) {
+            const n = parseInt(Math.random() * 100);
+            console.log(n);
+            (n % 2 == 0) ? callbackPar() : callbackNoPar();
+        };
+	
+		// Ejemplos de llamada: indicamos las funciones a ejecutar en los parámetros
+        fObtenerNumeroPar(fCorrecto, fError);
+        fObtenerNumeroPar(mensajePar, mensajeNoPar);
+		
+        // Funciones autoejecutables: las encerramos entre paréntesis y se ejecutan automáticamente tras su definición (porque llevan los paréntesis con los argumentos si los tuviesen)
+		// en este caso el argumento es Fulanito
+        (function(name) {
+            console.log(`Hola ${name}!!`);
+        })("Fulanito");
+
+		// Cierres: en est caso tenemos una función que contiene otra función en su interior, la función interna puede acceder a la variable de la función que la contiene
+		// y este valor permanece mientras la necesite
+        const incrementar = (function () {
+            let numero = 0;
+            return function () {
+                numero++;
+                console.log(numero);
+                return numero;
+            };
+        })();
+
+        incrementar();  
+        incrementar();  
+        incrementar();
+        var mensaje="hola";
+ 
+		function f1(){
+            var otroMensaje="hola2";
+            function f2() {
+                console.log("mensaje:"+mensaje);
+                console.log("otromensaje:"+otroMensaje);
+            }
+            f2();
+        }
+        f1();
+        // no existe fuera de ambito
+        //console.log(`pero fuera de la función no existe otroMensaje ${otroMensaje}`);
+		
+        // Funciones flecha
+        const funcionSiempre = function () {
+            return "Igual que en una función de las de siempre.";
+        };
+		// Se convierte en: 
+        const funcionFlecha = () => {
+            return "Devuelto desde una Función flecha.";
+        };
+		// Otros ejemplos:
+        const fFlecha1 = () => "Función flecha."; // sin parámetros, ni llaves, ni return: Devuelve "Función flecha"
+        const fFlecha2 = e => e + 1; // 1 parámetro, una sola línea : Devuelve el valor de e + 1
+        const fFlecha3 = (a,b) => a + b; // 2 parámetros: Devuelve el valor de a + b
+        console.log("fFlecha1", fFlecha1());
+        console.log("fFlecha2", fFlecha2(5));
+        console.log("fFlecha3", fFlecha3(5,10));
+	</script>
+</body>
+</html>
