@@ -1,0 +1,16 @@
+body{
+	background: url("../img/otono.jpg");
+	background-attachment: fixed;
+}
+
+#logo{
+	background: #ebb60b;
+}
+
+#menu ul li:hover{
+	background: #ebb60b;
+}
+
+.button-more{
+	background: #ebb60b;
+}

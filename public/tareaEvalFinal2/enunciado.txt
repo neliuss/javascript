@@ -1,0 +1,8 @@
+Tarea A7.1 Desarrollo con JQUERY
+A partir de la web proporcionada, realizar las siguinetes operaciones en JQUERY:
+Págino de inicio:
+1. Listado de post almacenado en el archivo post.json para insertarlos dinámicamente al cargar la página, se recomienda utilizar jQuery para la creación de las etiquetas en el documento.
+2. Cambiador de temas (cambio colores y fondos de la web). Por defecto se carga la hoja de estilos invierno.css, pero se deberá cambiar cuando se pulse en los colores de la izquierda, de acuerdo a lo siguiente:
+-Identificador invierno: hoja de estilos invierno.css
+
+hacer un formulario de login falso que nos permita guardar en el localstorage el nombre de usuario y, en el caso de que exista la "sesión" mostrarla. No es necesario realizar comprobaciones del formulario
