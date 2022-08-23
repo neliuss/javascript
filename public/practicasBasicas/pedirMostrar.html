@@ -1,0 +1,27 @@
+<!-- Pedir por teclado, nombre, apellido , edad y curso. Por último mostrarlo en una tabla. -->
+3. 
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Practica 0</title>
+</head>
+<body>
+<h1>Practica 3</h1>
+<script type="text/javascript">
+var nombre, edad, apellido, curso, respuesta;
+do{
+nombre = prompt("Introduce tu nombre: ")
+apellido = prompt("Introduce tu apellido: ")
+edad = prompt("Introduce tu edad: ")
+curso = prompt("Introduce tu curso: ")
+document.write("<table border=1>");
+document.write("<tr><th>Nombre</th><th>Apellido</th><th>Edad</th><th>Curso</th></tr>");
+document.write("<tr><td>" + nombre + "</td><td>"
++apellido+"</td><td>"+edad+"</th><td>"+curso+"</td></tr>");
+document.write("</table>")
+respuesta = prompt("Quieres introducir más datos? /S/");
+}while(respuesta=='S')
+</script>
+</body>
+</html>

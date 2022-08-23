@@ -1,0 +1,38 @@
+<!--  Pide dos números por teclado y partiendo de cuatro botones, que realizarán las cuatro
+operaciones básicas; SUMA; RESTA, MULTIPLICACION y DIVISION. Cada botón tiene asociado una función. -->
+
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Ejercicio 0</title>
+</head>
+<body>
+<h1>Ejercicio 2</h1>
+<script type="text/javascript">
+function suma(numero1,numero2)
+{
+alert("La suma de los dos numeros es: "+ (numero1+numero2));
+}
+function resta(numero1,numero2)
+{
+alert("La resta de los dos numeros es: "+ (numero1-numero2));
+}
+function multiplicacion(numero1,numero2)
+{
+alert("La multiplicacion de los dos numeros es: "+ (numero1*numero2));
+}
+function division(numero1,numero2)
+{
+alert("La division de los dos numeros es: "+ (numero1/numero2));
+}
+var numero1, numero2;
+numero1= parseInt(prompt("Introduce el primer numero:"));
+numero2= parseInt(prompt("Introduce el segundo numero:"));
+</script>
+<button onclick="suma(numero1,numero2)">Suma</button>
+<button onclick="resta(numero1,numero2)">Resta</button>
+<button onclick="multiplicacion(numero1,numero2)">Multiplicacion</button>
+<button onclick="division(numero1,numero2)">Division</button>
+</body>
+</html>

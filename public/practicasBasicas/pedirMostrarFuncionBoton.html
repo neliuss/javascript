@@ -1,0 +1,22 @@
+<!-- Crear un botón asociado a una función que pida por teclado el curso y el ciclo formativo
+que estudia y lo saque en una ventana emergente. Por ultimo que lo escriba en el documento. -->
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Nombre y Apellidos</title>
+<script type="text/javascript">
+function ciclo(curso,nombreciclo)
+{
+alert("El curso es "+ curso + " y el ciclo es " + nombreciclo);
+document.write("El curso es "+ curso + " y el ciclo es " + nombreciclo);
+}
+curso= prompt("Introduce el curso en el que te encuentras: ");
+nombreciclo= prompt("Introduce el nombre");
+</script>
+</head>
+<body>
+<h1>Ejercicio 5</h1>
+<button onclick="ciclo(curso,nombreciclo)">Función</button>
+</body>
+</html>

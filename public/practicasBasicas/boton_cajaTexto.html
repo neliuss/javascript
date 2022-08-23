@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+<script>
+function  cambiarCuadroTexto() {
+  document.getElementById("txtResultado").value = "Cuadro de texto cambiado.";
+}
+
+function  cambiarParrafoTexto() {
+  document.getElementById("pResultado").innerHTML = "Párrafo cambiado.";
+}
+function leerValores(){
+var txtResultado=document.getElementById("txtResultado").value; //almaceno en txtResultado el texto del cuadro de texto 
+var pResultado=document.getElementById("pResultado").innerHTML; // almaceno en pResultado el texto del párrafo
+document.write("<p>");
+document.write("El tipo de datos de un cuadro de texto es: " + typeof(txtResultado));
+document.write("<p>");
+document.write("El tipo de datos de un párrafo es: " + typeof(pResultado));
+
+}
+
+var suma=1000;
+var operador1=0
+var operador2=0;
+
+function sumar(){
+var suma=1000;
+var operador1=2
+var operador2=3;
+suma=operador1 + operador2;
+alert (suma)
+}
+
+function calcularsuma(){
+var suma=0;
+var operador1=2
+var operador2=3;
+suma=operador1 + operador2 + operador3;
+alert (suma)
+}
+
+function convertir(){
+
+};
+function calcular(){
+var suma=0;
+var operador1=222
+var operador2=2223;
+suma= calcularsuma();
+alert("El valor de suma local es: " + suma)
+}
+function mostrar_suma_global(){
+alert("El valor de la variable global suma es:" + suma);
+}
+
+</script>
+
+</head>
+<body>
+
+<h1>A Web Page</h1>
+<input type="text" id="txtResultado" value="Texto cuadro de texto por defecto"> </input>
+<p id="pResultado"> Texto párrafo por defecto</p>
+<button type="button" onclick="{cambiarCuadroTexto();}">Cambiar cuadro de Texto</button>
+<button type="button" onclick="{cambiarParrafoTexto();}">Cambiar Párrafo</button>
+<button type="button" onclick="{leerValores();}">Leer Valores</button>
+<button type="button" onclick="{sumar();}">Sumar</button>
+<button type="button" onclick="{mostrar_suma_global();}">Mostrar suma global</button>
+</body>
+</html>
