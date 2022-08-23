@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+<body>     
+    <table border="1" id="tabla">
+    <tr id="fila" width="500" bgcolor="#FFFFCC">
+    <td border="1px" width="200">
+    <form><input type="checkbox" id="check" /></form>
+    </td>
+    <td border="1px" width="200"></td>
+    </tr>
+    </table>
+    <script>
+        window.onload = function (){
+/* 	En este caso el evento lo captura en primer lugar el padre "raíz" del elemento que lo ha provocado
+y todos los descendientes... 
+Esto es  así siempre y cuando se haya definido un addEventListener para dichos elementos....
+podéis comprobar lo que sucede....
+			*/
+            document.getElementById("tabla").addEventListener("click",clickTabla,true);
+            document.getElementById("fila").addEventListener("click",clickFila,true);
+            document.getElementById("check").addEventListener("click",clickCheckbox,true);
+            }
+            function clickTabla(){ alert("Click en la tabla");}
+            function clickFila(){ alert("Click en la fila");}
+            function clickCheckbox(){alert("Click en el checkbox");
+        }
+    </script>
+</body>
+</html>

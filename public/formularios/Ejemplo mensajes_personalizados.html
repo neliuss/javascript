@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ejemplo mensajes personalizados</title>
+    <style>
+       body{
+           width:200px;
+       } 
+       input[type=email]{
+        width: 100%;
+        border: 1px solid #333;
+        margin: 0;
+        font-family: inherit;
+        font-size: 90%;
+        box-sizing: border-box;
+      }
+
+      /* Estilo para campos erróneos */
+      input:invalid{
+        border-color: rgb(235, 14, 14);
+        background-color: rgb(218, 216, 216);
+      }
+
+      input:focus:invalid {
+        outline: none;
+      }
+
+      /* Estilo  para mensaje de error*/
+      .error {
+        width  : 100%;
+        padding: 0;
+        font-size: 80%;
+        color: white;
+        background-color: rgb(226, 15, 15);
+        border-radius: 0 0 5px 5px;
+        box-sizing: border-box;
+      }
+    </style>
+</head>
+
+<body>
+  <form id="formulario" name="formulario" novalidate>
+    <p>
+      <label for="mail">
+        Dirección de correo electrónico<input type="email" id="correo" name="correo" required minlength="8">
+        <span class="error" id="correoErroneo"></span>
+      </label>
+    </p>
+    <input type="submit" value="Enviar">
+  </form>
+
+  <script>
+    const formulario  = document.formulario;
+
+    const email = document.getElementById('correo');
+    const emailError = document.getElementById("correoErroneo");
+
+    email.addEventListener('input', function (event) {
+      // Se comprueba cuando el usuario introduce datos en el campo
+      if (email.validity.valid) {
+        //Si el campo es correcto se elimina el error si lo hubiese
+        emailError.innerHTML = ''; 
+      } else {
+        // mostrar el error correspondiente
+        mostrarError();
+      }
+    });
+
+    // evento submit del formulario, en este caso no usamos un botón con click
+    form.addEventListener('submit', function (event) {
+      // Si el formulario es correcto se envían los datos, en caso contrario se muestra el error
+      if(!email.validity.valid) {
+        mostrarError();
+        // impedimos que se envíe el formulario
+        event.preventDefault();
+      }
+    });
+
+    function mostrarError() {
+      if(email.validity.valueMissing) {
+        // Comprobación campo vacío 
+        emailError.textContent = 'Debes introducir una direccón de correo electrónico.';
+      } else if(email.validity.typeMismatch) { // comprobación tipo de campo.
+        emailError.textContent = 'El dato que has introducido no es una dirección correo electrónico.';
+      } else if(email.validity.tooShort) { // debe tener al menos los caracteres indicados en minlength
+        emailError.textContent = `Se han de introducir al menos ${ email.minLength } caracteres, solo se han introducido ${ email.value.length }.`;
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Validación con expresión regular</title>
+</head>
+<body>
+<form id="miFormulario" action="" method="get">
+    <label for="matricula">Matrícula</label>
+    <input type="text" name="matricula" id="matricula" />
+    <input type="button" value="Literal" id="literal" />
+    <input type="button" value="Objeto" id="objeto" />
+</form>
+<h3>Sustituir "y" por "e"</h3>
+<form id="traductor" name="traductor" action="" method="get">
+    <label for="original">Texto</label>
+    <input type="text" name="original" id="original" value= "Unha, dúas y tres, y volvemos outra vez...."/>
+    <label for="traducido">Traducido</label>
+    <input type="text" name="traducido" id="traducido">
+    <input type="button" value="traducir" id="traducir">
+    <button type="reset" value="borrar" id="borrar" >Borrar </button>
+</form>
+
+<h4>Buscar palabras de tres letras</h4>
+<form id="tresLetras" name="tresLetras" action="" method="get">
+    <label for="contenido">Texto</label>
+    <input type="text" name="contenido" id="contenido" value= "en cuanto sea de tres nos las mostrará...."/>
+    <label for="deTresMatch">grupos de tres letras con match</label>
+    <input type="text" name="deTresMatch" id="deTresMatch">
+	<label for="deTresExec">grupos de tres letras con match</label>
+    <input type="text" name="deTresExec" id="deTresExec">
+    <input type="button" value="buscar" id="buscarTres">
+    <button type="reset" value="borrar" id="borrarTres" >Borrar </button>
+</form>
+
+<script type="text/javascript">
+    window.onload=function(){
+        document.getElementById("literal").addEventListener("click",literal);
+        document.getElementById("objeto").addEventListener("click",objeto);
+        document.getElementById("traducir").addEventListener("click",traducir);
+        document.getElementById("buscarTres").addEventListener("click",buscarTresLetras);
+    }
+
+    function literal() { 
+      var m = document.getElementById("matricula").value;
+      var expreg = /(^[A-Z]{1,2}\s?\d{4}\s?([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]){1,2}$)|(^\d{4}\s?([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]){3}$)/;
+      
+      if(expreg.test(m))
+        alert("La matrícula es correcta"); 
+      else 
+        alert("La matrícula NO es correcta"); 
+    } 
+    
+    function objeto() { 
+      var m = document.getElementById("matricula").value;
+      var expreg = new RegExp("(^[A-Z]{1,2}\\s\?\\d{4}\\s\?([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]){1,2}$)|(^\\d{4}\\s\?([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]){3}$)");
+      
+      if(expreg.test(m))
+        alert("La matrícula es correcta");
+      else
+        alert("La matrícula NO es correcta");
+    }
+    function traducir(){
+        const resultado = document.getElementById("original").value;
+        document.getElementById("traducido").value= resultado.replace(/[y]/g, "e");
+    }
+    function buscarTresLetras(){
+		// el método match nos duvuelve todas las coincidencias si se usa el modificador /g (global)
+        const r = /\b([a-z]{3})\b/gi;
+        const resultado = document.getElementById("contenido").value.match(r);
+        document.getElementById("deTresMatch").value = resultado;
+        // o bien
+        const resultado2 = [];
+        do{
+            resultado2.push(r.exec(document.getElementById("contenido").value));
+        } while ((r.exec(document.getElementById("contenido").value))!= null);
+		
+		let expresion = /\b([a-z]{3})\b/g;
+		let cadena = document.getElementById("contenido").value;
+		let coincidencias=[];
+		let coincidencia=[];
+		while ((coincidencia = expresion.exec(cadena)) !== null) {
+		  var msg = `Se ha encontrado ${coincidencia[0]}.`;
+		  msg += `La siguiente coincidencia empieza en el índice ${expresion.lastIndex}`;
+		  console.log(msg);
+		  coincidencias.push(coincidencia[0]);
+		}
+		// ejecuta una busqueda sobre las coincidencias de una expresión regular en 
+		// una cadena especifica. Devuelve el resultado como array, o null.
+		//let resultado2=r.exec(document.getElementById("contenido").value);
+        document.getElementById("deTresExec").value = coincidencias;
+        /*r.exec(str); // ['que', 'que']     index: 46
+        r.exec(str); // ['ver', 'ver']     index: 60
+        r.exec(str); // ['que', 'que']     index: 64
+        r.exec(str); // null*/
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html lang ="es">
+<head>
+	<meta  charset ="UTF-8">
+	<title > Formulario ejemmplo: Validación en HTML5 </title>
+    <style>
+        form {
+            font: 1em sans-serif;
+            max-width: 320px;
+        }
+        ul li{list-style-position: inside};
+        p > label { display: block;}
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        fieldset {
+            width : 100%;
+            border: 1px solid #333;
+            box-sizing: border-box;
+        }
+        input:invalid {box-shadow: 0 0 5px 1px red;}
+        input:focus:invalid {box-shadow: none;}
+    </style>
+</head>
+<body>  
+    <header><h2>Uso API validación HTML5</h2></header>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation">API de validación de formularios</a></p>
+    <p>La validación de restricciones a través de la API de validación de restricciones se realiza
+        en un solo elemento de formulario o en el nivel de formulario, en el <code>form</code>propio elemento.</p>
+
+    <h4>Interfaz de validación</em></h4>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation#constraint_validation_interfaces">Interfaces de validación</a></p>
+    <h5>Estado de validez</h5>
+    <p>La interfaz ValidityState representa los estados de validez que puede tener un elemento de control de formulario, con respecto a sus restricciones definidas. Juntos, ayudan a explicar si el valor de un elemento no se valida y por qué.</p>
+    <h5>Evento <code>invalid</code></h5>
+    <p>Este evento se dispara en un elemento de control de formulario si el elemento no satisface sus restricciones.</p>
+    <h4>Propiedades</h4>
+    <ul>
+        <li><em>validity</em>
+            <p>Propiedad de solo lectura. Devuelve un ValidityState objeto, cuyas propiedades representan errores de validación para el valor de ese elemento.</p>
+        </li>
+        <li><em>validationMessage</em> 
+            <p>Propiedad de solo lectura. Devuelve una cadena vacía si la validación no es aplicable o si el valor del elemento es válido. En caso contrario, devuelve 
+            un mensaje de validación localizado. Si se establece un mensaje de error personalizado mediante setCustomValidity(), se mostrará.</p>
+        </li>
+        <li><em>willValidate</em>
+            <p>Propiedad booleana de solo lectura. Devuelve 
+            true si el elemento la validación es aplicable y false en caso contrario.</p>
+        </li>
+    </ul>
+    <h4>Métodos</h4>
+    <ul>
+        <li><em>checkValidity()</em>
+            <p>Compara el valor del elemento con sus restricciones. 
+                Si el valor no es válido, dispara un evento no válido en el elemento y devuelve false; de lo contrario, devuelve true.</p>
+        </li>
+        <li><em>reportValidity()</em>
+            <p>Método del formulario. Compara el valor del elemento con sus restricciones y,
+             también informa el estado de validez; si el valor no es válido, dispara un evento no válido en el elemento, 
+             devuelve false y, luego informa el estado de validez al usuario de cualquier forma que el agente de usuario tenga disponible. 
+             De lo contrario, devuelve true.</p>
+        </li>
+        <li><em>setCustomValidity(mensaje)</em>
+            <p>Establece una cadena de mensaje de error personalizada que se mostrará al usuario al enviar el formulario. 
+            Cuando se utiliza como argumento una cadena vacía, el mensaje de error personalizado se borra, el elemento se considera válido y no se muestra ningún mensaje.</p>
+        </li>
+    </ul>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation">API de validación</a></p>
+    <hr>
+    <h4>Formulario de ejemplo</h4>
+    <form name="formulario" id="formulario" action="#" method="post">
+        <fieldset>
+            <legend>Idioma<abbr title="selecciona un lenguaje" aria-label="required">*</abbr></legend>
+            <input type="radio" name="lenguaje" id="js" value="js" required><label for="lenguaje">JavaScript</label>
+            <input type="radio" name="lenguaje" id="php" value="php"><label for="php">PHP</label>
+            <input type="radio" name="lenguaje" id="html" value="html"><label for="php">HTML</label>
+            <input type="radio" name="lenguaje" id="css" value="css"><label for="php">CSS</label>
+        </fieldset>
+        </p>
+        <p>
+        <label for="convocatoria">¿En qué convocatoria estás? </label>
+        <input type="number" min="1" max="4" step="1" id="convocatoria" name="convocatoria" pattern="\d{1}">
+        </p>
+        <p>
+        <label for="atributos">atributos HTML5<abbr title="campo obligatorio" aria-label="required">*</abbr></label>
+        <input type="text" id="atributos" name="atributos" list="l1" required
+                pattern="[Re]quired|[Mn]in|[Mm]ax|[Mn]inlengtht|[Mm]axlenght|[Pp]attern">
+        <datalist id="l1">
+            <option>Required</option>
+            <option>Min</option>
+            <option>Max</option>
+            <option>Minlength</option>
+            <option>Maxlength</option>
+            <option>Pattern</option>
+        </datalist>
+        </p>
+        <p>
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required>
+        </p>
+        <p>
+        <label for="mensaje">Leave a short message</label>
+        <textarea id="mensaje" name="mensaje" maxlength="140" rows="5"></textarea>
+        </p>
+        <p><button>Enviar</button></p>
+    </form>
+    <script>
+        const correo = document.getElementById('email');
+        const form = document.getElementsByClassName('formulario');
+        const atributos = document.getElementById('atributos');
+
+        correo.addEventListener('input', () => {
+            correo.setCustomValidity('');
+            correo.checkValidity();
+        });
+
+        correo.addEventListener('invalid', () => {
+            if(correo.value === '') {
+                correo.setCustomValidity('Por favor rellena el campo correo!');
+            } else {
+                correo.setCustomValidity('El correo no cumple las características de una dirección correcta');
+            }
+        });
+        atributos.addEventListener('input', () => {
+            atributos.setCustomValidity('');
+            atributos.checkValidity();
+        });
+        atributos.addEventListener('invalid', () => {
+            if(atributos.value === '') {
+                atributos.setCustomValidity('Por favor rellena el campo lenguaje!');
+            } else {
+                atributos.setCustomValidity('No encaja con ningún valor de los permitidos');
+            }
+        });
+    </script>
+</body>
+</html>
+    
+    

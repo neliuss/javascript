@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>DWEC05 - Trabajando con objetos input de tipo radio</title>
+    </head>
+    <body>
+        <h1>Trabajando con objetos input de tipo radio</h1>
+        <form  name="formulario" action="#">
+            <fieldset>
+                <legend>Selecciona tu actor favorito:</legend>
+                <label for="actor1">Willis</label>
+                <!-- Fijarse que la clave aquí está en que todos los botones de radio tienen el mismo nombre, pero distinto id para poder 
+                    saber cuál se ha marcado. Recordar que cuando se envía un formulario al servidor, lo que se envía es el nombre del campo
+                    y su valor, al ser el mismo nombre es lo que hace que sean excluyentes y solo se pueda marcar uno 
+                -->
+                <input type="radio" name="actores" id="actor1"value="Walter Bruce Willis - 19 de Marzo de 1955" checked>
+                <label for="actor2">Carrey</label>
+                <input type="radio" name="actores" id="actor2" value="James Eugene Jim Carrey - 17 de Enero de 1962">
+                <label for="actor3">Tosar</label>
+                <input type="radio" name="actores" id="actor3" value="Luis Tosar - 13 de Octubre de 1971">
+                <!--<input type="button" id="consultar" name="consultar" value="Consultar Más Datos" onclick="mostrarDatos()">-->
+                <input type="button" id="consultar" name="consultar" value="Consultar Más Datos" >
+            </fieldset>
+        </form>
+        <script type="text/javascript">
+            window.onload=function(){
+                document.getElementById("consultar").addEventListener("click",mostrarDatos); // asociamos el evento al botón
+            }
+            const mostrarDatos = () => {
+                // Como todos se llamana igual tenemos que comprobar cuál es el que se ha marcado. Entonces recuperamos el campo por el nombre y como tenemos 
+                // tres utilizamos el bucle para saber cuál está marcado.
+                // Tanto los checkbox como los radio button la propiedad que nos dice si se ha marcado o no es checked. Esta propiedad es booleana, verdadero si 
+                // está marcada y falso si no lo está, por eso utilizamos el if. Sin embargo para el botón marcado lo que se recupera es el valor, que sería la 
+                // propiedad que se envía al servidor.
+                for  (let i=0;i<document.formulario.actores.length; i++) { // recorrer todos los botones de radio con el nombre actores. Tenemos tres
+                    if  (document.formulario.actores[i].checked) // comprobar si ese botón de radio está marcado
+                        alert(document.formulario.actores[i].value); //mostrar el valor
+                }
+            }
+        </script>
+    </body>
+</html>

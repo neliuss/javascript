@@ -1,0 +1,51 @@
+<!DOCTYPE  html>
+<html>
+    <head>
+        <meta  http-equiv="content-type"  content="text/html;charset=utf-8">
+        <title>Uso de la palabra reservada this</title>
+    </head>
+    <body>
+        <h1>Sustituir el uso de this por las propiedades del evento generado</h1>
+		<p> Cuando se genera un evento, se crea un objeto Event, el cual tiene propiedades que nos 
+		proporcionan un montón de información tal como el evento que se produjo, sobre qué elemento,etc.
+		Accediendo al elemento que lo ha provocado, podemos obtener toda la información de dicho elemento.
+		En la consola podéis analizar todas las propiedades del evento (F12)
+		</p>
+        <form id="formulario">
+            <p>
+                <label for="nombre">Nombre: </label>
+                <input type="text" name="nombre" id="nombre" value="Bob"/>
+                <label for="apellidos">Apellidos: </label>
+                <input type="text" name="apellidos" id="apellidos" value="Esponja"/>
+                <label for="edad">Edad: </label>
+                <input type="number" name="edad" id="edad" value="18"/>
+                <label for="pais">Pais: </label>
+                <label for="pais1">España: </label>
+                <input type="radio" name="pais" id="pais1" value="ES"/>
+                <label for="pais2">Francia: </label>
+                <input type="radio" name="pais" id="pais2" value="FR"/>
+            </p>
+            <p>Haga click en cada uno de los campos para ver más información.</p>
+        </form>
+        <script  type="text/javascript">
+            window.onload= function(){
+                document.getElementById("nombre").addEventListener("click",identificar);
+                document.getElementById("apellidos").addEventListener("click",identificar);
+                document.getElementById("edad").addEventListener("click",identificar);
+                document.getElementById("pais1").addEventListener("click",identificar);
+                document.getElementById("pais2").addEventListener("click",identificar);
+            }
+			// Se trata de aprovechar las propiedades del evento generado por el usuario al hacer click, al que
+			// podemos acceder a través del parámetro "evento" de la función asociada al mismo.
+            const identificar = (evento) => {
+                console.log(evento); // comprobar todas las propiedades del evento
+                console.log(evento.target); // ver el elemento en el que se ha originado el evento (el input)
+                let nombre = evento.target.name; // propiedad nombre del campo en el que se ha producido el evento. 
+                let id =  evento.target.id; // acceso al atributo id del campo, a través de la propiedad del mismo nombre
+                let valor = evento.target.value; // idem para el atributo value
+                let tipo = evento.type; // el propio evento
+                alert(`Datos del campo pulsado:\n\nNombre: ${nombre}\nID: ${id}\nValor: ${valor}\nTipo: ${tipo}`);
+            }
+        </script>
+    </body>
+</html>

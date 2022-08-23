@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="ejer1.js"></script>
+    </head>
+    <body>
+		<p id="p1">
+		</p>
+        <script>
+            // Funcion que actualiza un elemento p con id p1, mostrando posicion del raton
+            function mostrarPosicion(evento){
+                document.getElementById("p1").innerHTML="Posicion X "+evento.clientX+" Posicion Y "+evento.clientY;
+            }
+
+            // Asignamos un manejador a onmouseover
+            //document.onmousemove=mostrarPosicion;
+            document.addEventListener("mousemove", mostrarPosicion);
+        </script>
+	</body>
+</html>

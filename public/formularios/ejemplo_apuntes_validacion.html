@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>DWEC05 - Validación de un Formulario</title>
+        <script type="text/javascript">
+            window.onload=function(){
+                document.getElementById("enviar").addEventListener("click",validar);
+            }
+            const validar = () => {
+                let edad = document.getElementById('edad').value;
+                if ( edad >= 18 && confirm("¿Deseas enviar el formulario?"))
+                    return true;
+                else
+                {
+                    alert('Lo siento, pero no eres mayor de edad.')
+                    this.event.preventDefault();		
+                    return false;
+                }
+            }
+        </script>
+        <style type="text/css">
+            label{
+                width: 150px;
+                float:left;
+                margin-bottom:5px;	
+            }
+            input, select {
+                width:150px;
+                float:left;
+                margin-bottom:5px;
+            }
+
+            fieldset{
+                background:#CCFF99;
+                width:350px;
+            }
+
+            .error{
+                border: solid 2px #FF0000;
+
+            }
+        </style>
+    </head>
+    <body>
+        <fieldset>
+            <legend>DWEC05 - Validación de un Campo -</legend>
+            <form name="formulario" id="formulario" action="#" method="get">
+                <label for="edad">Edad:</label>
+                <input name="edad" type="text" id="edad" maxlength="3" />
+                <input type="reset" name="limpiar" id="limpiar" value="Limpiar" />
+                <!--<input type="submit" name="enviar" id="enviar" value="Enviar" onClick="validar()"/>-->
+                <input type="submit" name="enviar" id="enviar" value="Enviar">
+            </form> 
+        </fieldset>
+    </body>
+</html>

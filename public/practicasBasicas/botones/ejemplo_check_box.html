@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejemplo uso de un checkbox para marcar y desmarcar checkbox</title>
+    </head>
+    <body>
+        <input type="checkbox" id="marcar" /> Seleccionar/Deseleccionar todos<br><br>    
+        <input type="checkbox" name="ejemplo" value="1"> 1<br/>
+        <input type="checkbox" name="ejemplo" value="2"> 2<br/>
+        <input type="checkbox" name="ejemplo" value="3"> 3<br/>
+        <input type="checkbox" name="ejemplo" value="4"> 4<br/>        
+        <script>
+            window.onload = function(){
+                document.getElementById("marcar").addEventListener("click",marcar);
+            }
+			
+            function marcar() {
+			// Todos los checkbox tienen el mismo nombre, por tanto los recuperamos por nombre y así
+			// obtenemos una lista
+                checkboxes = document.getElementsByName('ejemplo');
+                for(var i=0, n=checkboxes.length;i<n;i++) {
+					// a cada checkbox le asignamos en su propiedad checked el valor del checkbox marcar
+                    checkboxes[i].checked = document.getElementById("marcar").checked;
+                }         
+            }
+        </script>
+    </body>
+</html>

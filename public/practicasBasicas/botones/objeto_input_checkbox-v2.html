@@ -1,0 +1,36 @@
+<!DOCTYPE  html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <form action="" method="get">
+            <label for="verano">¿Te gusta el verano?</label>
+            <input type="checkbox" id="verano" name="verano" value="Si"/>
+        </form>
+        <button id="marcar" name="marcar">Marcar Checkbox</button>
+        <button id="desmarcar" name="desmarcar">Desmarcar Checkbox</button>
+        <button id="ver" name="ver">Ver checkbox marcado</button>
+
+        <script type="text/javascript">
+            // asociar los eventos a los botones, pero para ello es necesario que el documento esté cargado, por eso lo hacemos cuando tenga lugar el evento onload.
+            window.onload=function(){
+                document.getElementById("marcar").addEventListener("click",marcar); // se asocia al evento click la función marcar, fijarse sin paréntesis.
+                document.getElementById("desmarcar").addEventListener("click",desmarcar); // se asocia al evento click la función desmarcar, fijarse sin paréntesis.
+                document.getElementById("ver").addEventListener("click",ver); // se asocia al evento click la función marcar, fijarse sin paréntesis.
+            }
+            const marcar = () => {
+                document.getElementById("verano").checked = true;
+            }
+            const desmarcar = () => {
+                document.getElementById("verano").checked = false;
+            }
+			const ver = () => {
+				if (document.getElementById("verano").checked)
+                 alert("El checkbox está marcado");
+				else 
+					alert("El checkbox no está marcado");
+            }
+        </script>
+    </body>
+</html>

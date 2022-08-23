@@ -1,0 +1,65 @@
+<!DOCTYPE  html>
+<html>
+    <head>
+        <meta  http-equiv="content-type"  content="text/html;charset=utf-8">
+        <title>DWEC05 - Propiedad VALUE de un objeto de tipo texto</title>
+    </head>
+    <body>
+        <h1>Propiedad VALUE de un objeto INPUT de tipo TEXT</h1>
+        <form id="formulario" action="pagina.php">
+            <p>
+                <label for="nombre">Nombre y Apellidos: </label>
+ <!--               <input  type="text"  id="nombre"  name="nombre"  value="" size="30" onblur="convertirMayusculas()">-->
+                <input  type="text"  id="nombre"  name="nombre"  value="" size="30">
+            </p>
+
+            <p>
+                Introduce tu Nombre y Apellidos y haz click en el del campo.
+            </p>
+        </form>
+        <script  type="text/javascript">
+            window.onload = function(){
+                document.getElementById("nombre").addEventListener("click", pasarMayusculas);
+            }
+            const convertirMayusculas = () => {
+                /*
+                    En este ejemplo accedemos a la propiedad value de un objeto con id nombre y le asignamos 
+                    su contenido actual pero convertido a mayúsculas con el método toUpperCase() del objeto String.
+                */
+                document.getElementById("nombre").value=document.getElementById("nombre").value.toUpperCase();
+            }
+            const pasarMayusculas = function(){
+                document.getElementById("nombre").value=document.getElementById("nombre").value.toUpperCase();
+            }
+
+        </script>
+        
+        -------------Ej libro:
+
+    <script type="text/javascript">
+        const convertirMayusculas2 = () => {
+
+            //    En este ejemplo accedemos a la propiedad value de un objeto con id nombre y le asignamos 
+            //    su contenido actual pero convertido a mayúsculas con el método toUpperCase() del objeto String.
+
+            document.getElementById("nombre2").value = document.getElementById("nombre2").value.toUpperCase();
+        }
+    </script>
+
+
+
+        <h1>Propiedad VALUE de un objeto INPUT de tipo TEXT</h1>
+        <form id="formulario2" action="pagina.php">
+            <p>
+                <label for="nombre2">Nombre y Apellidos: </label>
+                <input type="text" id="nombre2" name="nombre2" value="" size="30" onblur="convertirMayusculas2()">
+            </p>
+            <p>
+                Introduce tu Nombre y Apellidos y haz click fuera del campo.
+            </p>
+        </form>
+
+
+    </body>
+</html>
+

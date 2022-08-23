@@ -1,0 +1,83 @@
+<!DOCTYPE  html>
+<html lang="es">
+    <head>
+        <meta  http-equiv="content-type"  content="text/html;charset=utf-8">
+        <title>DWEC05 - Trabajando con un objeto Select</title>
+    </head>
+    <body>
+        <h1>Trabajando con un objeto Select</h1>
+        <p>Un objeto select está compuesto realmente de un array de objetos option. El objeto select se suele mostrar
+             como una lista desplegable en la que seleccionas una de las opciones, aunque también tienes la opción de 
+             selecciones múltiples, según definas el objeto en tu documento.
+        </p>
+        <p>Intervienen dos etiquetas SELECT y OPTION</p>
+        <p> <em>Propiedades principales:</em></p>
+        <ul>
+            <li><em>options:</em>contiene la lista de opciones del campo select, las etiquetas OPTION</li>
+            <li><em>selectedIndex:</em>Índice de la opción seleccionada dentro de la lista de opciones</li>
+        </ul>
+        <p>Al igual que el resto de campos la propiedad <em>value</em> nos permite obtener el valor del atributo value de cada una de las opciones</p>
+        <p>La propiedad <em>text</em> nos permite obtener el texto dentro de la propia etiqueta OPTION</p>
+        <p><em>Acceso </em></p>
+        <form id="formulario">
+            <p>
+                <label for="provincias">Seleccione provincia: </label>
+                <select name="provincias" id="provincias">
+                    <option value="AL">Almería</option>
+                    <option value="JA">Jaen</option>
+                    <option value="GR">Granada</option>
+                    <option value="MA">Málaga</option>
+                    <option value="SE">Sevilla</option>
+                    <option value="CO">Córdoba</option>
+                    <option value="CA">Cádiz</option>
+                    <option value="HU">Huelva</option>
+                </select>
+            </p>
+            <p>
+                Selecciona una opción y muestra su contenido o también puedes consultarlas todas.
+            </p>
+            <input type="button" name="verSeleccion" id="verSeleccion" value="Consultar información de la opción"/>
+            <!--<input type="button" name="boton" value="Consultar información de la opción" onclick="consultar()"/>--><!-- Eliminamos Javascript del código HTML-->
+            <input type="button" name="mostrarTodas" id="mostrarTodas" value="Mostrar todas las opciones"/>
+            <p id="info"></p>
+        </form>
+        <script  type="text/javascript">
+            window.onload=function(){
+                document.getElementById("verSeleccion").addEventListener("click", consultar);
+                document.getElementById("mostrarTodas").addEventListener("click", mostrarOpciones);                
+            }
+            const consultar = () => {
+                let provincias = document.getElementById("provincias");
+                console.log(`Indice de la Lista de provincias: ${provincias.selectedIndex}`);
+                let texto = provincias.options[provincias.selectedIndex].text;
+                let valor = provincias.options[provincias.selectedIndex].value;
+                alert(`Datos de la opción seleccionada:\n\nTexto: ${texto}\nValor: ${valor}`);
+                console.log(texto, provincias.options.selectedIndex, valor);
+            }
+            const mostrarOpciones = () => {
+                let listaOpciones="<h3>Listado de opciones</h3>";
+                //const opciones = document.getElementById("provincias").options; // aunque es una lista no es un ARRAY tal cual
+                // opciones.forEach()-> nos daría un error
+                // Posibles soluciones para convertir una Collection en un array y poder así usar sus métodos por ejemplo forEach
+                /* const opciones = document.getElementById('provincias').options;
+                   const listaOpciones = [];
+                for (let i = 0; i < opciones.length; i++) {
+                    console.log(opciones[i]);
+                    // añadimos la opción al array
+                    listaOpciones.push(opciones[i]);
+                }
+                */
+                // También se podría usar el operador de propagación
+                //const opciones = [...document.getElementById('provincias').options];
+                const opciones = Array.from(document.getElementById("provincias").options);
+                console.log(opciones);
+                opciones.forEach((element,index) => {
+                    listaOpciones += `Opción; ${index} Valor: ${element.value} Texto: ${element.text}<br>`;
+                });
+                document.getElementById("info").innerHTML = listaOpciones;
+            }
+        </script>
+    </body>
+</html>
+
+

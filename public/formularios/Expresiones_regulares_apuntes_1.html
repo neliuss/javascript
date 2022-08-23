@@ -1,0 +1,43 @@
+<!DOCTYPE  html>
+<html lang="es">
+    <head>
+        <meta  http-equiv="content-type"  content="text/html;charset=utf-8">
+        <title>Ejemplo de RegExp</title>
+        <script type="text/javascript">
+            const iniciar = () => {     
+                document.getElementById("comprobar").addEventListener("click", comprobarTelefono);
+                document.getElementById("comprobarObjeto").addEventListener("click", comprobarTelefonoObjeto);
+                document.getElementById("borrar").addEventListener("click", borrar);
+            }
+            const comprobarTelefono = () => {  
+                let telefono = document.getElementById("telefono").value;
+                let patron = /^\d{9}$/;
+                if (telefono.match(patron))
+                    alert('Teléfono Correcto!!!!');
+                else
+                    alert('Teléfono INCORRECTO!!!!');
+            }
+            const comprobarTelefonoObjeto = () =>{ 
+                let tfno = document.getElementById("telefono").value;
+                var expreg = new RegExp("^\\d{9}$");
+                if(expreg.test(tfno))
+                    alert("El teléfono es correct");
+                else
+                    alert("La teléfono NO es correcto");
+            }
+            function borrar(){
+                document.formulario.reset();
+            }
+            window.onload = iniciar;
+        </script>
+    </head>
+    <body>
+        <form name="formulario">
+            <label for="telefono">Teleono:</label>
+            <input type="text" name="telefono" id="telefono" />
+            <input type="button" name="comprobar" id="comprobar" value="Comprobar Formato" />
+            <input type="button" name="comprobarObjeto" id="comprobarObjeto" value="Comprobar Formato con objeto" />
+            <input type="button" name="borrar" id="borrar" value="Borrar" />
+        </form>
+    </body>
+</html>
